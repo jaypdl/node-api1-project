@@ -19,7 +19,7 @@ server.get('/api/users', (req, res) => {
     .then(users => {
       console.log('users from the model -->', users)
       // throw new Error()
-      res.status(200).json({ users })
+      res.status(200).json(users)
     })
     .catch(err => {
       res.status(500).json({ message: 'The users information could not be retrieved' })
@@ -51,7 +51,7 @@ server.post('/api/users', (req, res) => {
   } else {
     User.insert(newUser)
       .then(user => {
-        res.status(201).json({ user })
+        res.status(201).json(user)
       })
       .catch(err => {
         res.status(500).json({ message: 'There was an error while saving the user to the database'})
@@ -74,7 +74,7 @@ server.put('/api/users/:userId', async (req, res) => {
       if (!updatedUser) {
         res.status(404).json({ message: "The user with the specified ID does not exist" })
       } else {
-        res.json({ updatedUser })
+        res.json(updatedUser)
       }
     }
   } catch(err){
